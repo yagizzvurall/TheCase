@@ -1,20 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using TheCase.Data.Entities;
 
-namespace TheCase.Data;
-
-public class ApplicationDbContext : DbContext
+namespace TheCase.Data
 {
-    public DbSet<Player> Players { get; set; }
-
-    public DbSet<Suspicious> Suspiciouses { get; set; }
-
-    public DbSet<Advisor> Advisors { get; set; }
-
-    public DbSet<Level> Levels { get; set; }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public class ApplicationDbContext : DbContext
     {
-        optionsBuilder.UseSqlite("DataSource = TheCaseDatabase.db");
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
+        {
+        }
+
+        public DbSet<Level> Levels { get; set; }
     }
 }
